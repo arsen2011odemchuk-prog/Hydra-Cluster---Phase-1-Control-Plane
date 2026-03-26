@@ -1,1 +1,11 @@
 # AiCore-Server
+- **Motherboard (Mini‑ITX / Micro‑ATX)** – ~£40–£80
+- **CPU (Processor)** – ~£60–£120
+- **16GB DDR4 RAM (2×8GB)** – ~£30–£60
+- **500GB NVMe SSD** – ~£25–£50
+- **GPU (NVIDIA GTX 1050 Ti or GTX 1650)** – ~£70–£150
+- **Power Supply Unit (PSU)** – ~£30–£60
+- **CPU Cooler** – ~£15–£30
+- **Case (3D‑printed or other)** – ~£0–£20 (if you 3D‑print yourself)
+- **Screws / Mounting Hardware** – ~£5–£10
+- **Ethernet Cable (Cat6)** – ~£5–£10
