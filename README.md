@@ -22,6 +22,13 @@ I created this project to learn the fundamentals of distributed systems and to r
 ## showing places where components will go
   <img width="565" height="512" alt="image" src="https://github.com/user-attachments/assets/df7e780e-a0fe-4d12-8852-84a4ea5d72b7" />
 
+## System Interconnect & Wiring Strategy:
+ Since Node 1 is built using standardized ATX/AM4 components, the wiring follows a strict modular power and data distribution plan:
+- Power Delivery: The VIDA 500W PSU provides dedicated 24-pin ATX power to the MSI A520M motherboard and a 4+4 pin EPS connector for the Ryzen 3 4100 CPU.
+- Storage Interface: The Integral 256GB SSD is mounted directly via the M.2 PCIe Gen3 x4 slot, eliminating the need for external SATA data and power cables to improve airflow.
+- Network Topology: A Cat6 Ethernet cable connects the onboard Realtek GbE LAN to the TP-Link 5-Port Gigabit Switch. This switch serves as the communication backbone for the upcoming 4-node cluster.
+- Initial Video Out: The NVIDIA GT 210 is connected via the PCIe x16 slot for the initial OS configuration.
+
 
 ## 📊 BOM (Bill of Materials)
 
