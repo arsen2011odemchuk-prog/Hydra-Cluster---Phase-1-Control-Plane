@@ -28,6 +28,27 @@ I created this project to learn the fundamentals of distributed systems and to r
 - Storage Interface: The Integral 256GB SSD is mounted directly via the M.2 PCIe Gen3 x4 slot, eliminating the need for external SATA data and power cables to improve airflow.
 - Network Topology: A Cat6 Ethernet cable connects the onboard Realtek GbE LAN to the TP-Link 5-Port Gigabit Switch. This switch serves as the communication backbone for the upcoming 4-node cluster.
 - Initial Video Out: The NVIDIA GT 210 is connected via the PCIe x16 slot for the initial OS configuration.
+  <img width="651" height="606" alt="image" src="https://github.com/user-attachments/assets/661a371f-92d1-4cc4-8b36-58a3dde44ee0" />
+
+## Detailed Wiring & Interconnect Specifications
+
+|cable type| from where to where|specification|purpose|
+|:---|:---|:---|:---|
+|ATX 24-Pin|	PSU -> Motherboard| Main Power Cable	|Main power supply for the entire board and chipset.|
+|EPS 4+4 Pin|	PSU -> CPU Socket|	CPU Power Cable|	Dedicated power supply for Ryzen 3 4100.|
+|SATA Power|	PSU -> Case Fans|	Peripheral Power|	Power supply for the case lights and fans Kolink.|
+|PCI x16 Slot|	Motherboard -> GPU|	Bus Connection|	Data transfer and 75W power delivery for GT 210.|
+|M.2 Interface|	Motherboard -> SSD|	PCIe Gen3 x4|	Direct connection without cables for Integral SSD.|
+|Cat6 Ethernet|	Motherboard -> Switch|	RJ45 Gigabit Cable|Cluster network bridge (blue cable in the diagram).|
+|Front Panel|	Case -> Motherboard|	JFP1 Headers	Кнопка |Power switches and indicators (Power/Reset).|
+
+## Phase 1 Connectivity Strategy:
+- For Node 1, I have optimized the wiring to ensure maximum airflow for 24/7 server stability.
+- Direct Storage: By using an M.2 NVMe SSD, I eliminated the need for SATA data and power cables, reducing clutter.
+- Modular Power: The 500W PSU delivers stable 12V rails to the Ryzen 3 4100 via an 8-pin EPS connector, ensuring no voltage drops during heavy AI orchestration tasks.
+- Network Backbone: The connection to the TP-Link Gigabit Switch is the most critical link. It uses a shielded Cat6 cable to minimize interference, serving as the gateway for future compute nodes in the cluster.
+- Headless Ready: The wiring for the GT 210 GPU is temporary. Once the Linux OS is configured, this card can be physically removed, leaving the PCIe slot empty to further improve cooling.
+
 
 
 ## 📊 BOM (Bill of Materials)
