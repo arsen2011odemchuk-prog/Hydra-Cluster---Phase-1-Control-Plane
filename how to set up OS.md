@@ -36,6 +36,42 @@ While the initial setup uses an NVIDIA GT 210, this script installs the modern *
 ### Phase B: Remote Deployment
 From your main workstation/laptop, perform the following:
 
-1. **Access the Node:**
-   ```bash
-   ssh username@<your-node-ip>
+
+# ⚡ Hydra Cluster: Distributed Control & Power Management
+
+This section explains how the **Hydra Control Engine** manages the 4-node Ryzen 3 cluster to maximize computational throughput.
+
+## ## How It Controls Every Node
+The controller uses **Kubernetes Node Selectors**. Instead of manually logging into each server, the Python script sends a "Manifest" to the Master Node (Node 1). This manifest contains a `nodeSelector` tag. 
+* **Node 1 (The Brain):** Reserves its 4 cores for scheduling, API handling, and traffic routing.
+* **Nodes 2, 3, 4 (The Muscle):** These nodes wait for "Pod" assignments. When the Python controller identifies a heavy AI task, it pushes the workload to these nodes via the K3s API.
+
+## ## Power Utilization Strategy
+To ensure the cluster doesn't overheat or waste electricity, the software follows these power rules:
+
+1. **Dynamic Scaling:** If no AI tasks are in the queue, the worker nodes stay in "Idle" mode, consuming minimal wattage.
+2. **Parallel Processing:** For massive datasets, the controller splits the data into 3 chunks and sends one to each worker node. This allows the cluster to use all **16 CPU cores** simultaneously.
+3. **GPU Passthrough:** When an NVIDIA GPU is detected on any node, the controller prioritizes that node for `cuda` tasks, significantly reducing the time the CPU spends at 100% load.
+
+---
+
+## 🔍 Troubleshooting the Controller
+
+### 1. "Connection Refused" to localhost:8080
+* **Cause:** The Python script cannot find the K3s configuration file.
+* **Fix:** Ensure your user has access to the K3s config. Run: 
+  `export KUBECONFIG=/etc/rancher/k3s/k3s.yaml` 
+  or run the script with `sudo`.
+
+### 2. Task Stays in "Pending" State
+* **Cause:** The controller sent a task to a node that doesn't have enough RAM or is offline.
+* **Fix:** Check node resources with `kubectl describe node <node-name>`. Ensure `swap` is disabled on all nodes as per Phase 1 instructions.
+
+### 3. Subprocess Errors
+* **Cause:** The script tries to run `kubectl` but it isn't in the system path.
+* **Fix:** Verify K3s is installed correctly by running `which kubectl`. If it returns nothing, the Phase 1 `setup.sh` did not complete successfully.
+
+---
+
+## 📈 Next Step: Deployment
+With the **Setup Script** (Body), the **AI Core** (Mind), and the **Controller** (Nervous System) ready, your 4-node Ryzen 3 Hydra is officially ready for the Blueprint submission.
