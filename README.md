@@ -1,4 +1,5 @@
 # Hydra AI Cluster - Phase 1
+## Hydra AI Cluster - Phase 2 -https://github.com/arsen2011odemchuk-prog/Hydra-Cluster---Phase-2-Sentinel-Hardware-Interface/blob/main/README.md
 
 ## 📌 Project Overview
 Hydra is a distributed computing cluster built to run AI models locally. Phase 1 establishes the **Control Plane**, responsible for networking and task management.
